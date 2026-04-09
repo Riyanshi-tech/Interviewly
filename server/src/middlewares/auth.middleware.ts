@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
         role: string;
     };
 }
-export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try{
         const authHeader = req.headers.authorization;
         if (!authHeader) {
@@ -20,7 +20,7 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
             return;
         }
         const decoded = jwt.verify(token, JWT_SECRET) as { userId: string; role: string };
-        req.user = decoded;
+       (req as any).user = decoded;
         next();
     } catch (error) {
         res.status(401).json({ error: "Invalid token" });
@@ -28,11 +28,12 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     }
 };
 export const authorizeRoles = (...roles: string[]) => {
-    return (req: AuthRequest, res: Response, next: NextFunction) => {
-        if (!req.user || !roles.includes(req.user.role)) {
+    return (req: Request, res: Response, next: NextFunction) => {
+        const authReq = req as AuthRequest;
+        if (!authReq.user || !roles.includes(authReq.user.role)) {
             res.status(403).json({ error: "Access denied: Unauthorized role" });
             return;
         }
         next();
     };
-};
+};

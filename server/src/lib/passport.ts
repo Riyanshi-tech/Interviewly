@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      callbackURL: "/api/auth/google/callback",
+      callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:5000/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -32,7 +32,7 @@ passport.use(
           });
         }
 
-        const token = generateToken(user.id, user.role);
+        const token = generateToken({ userId: user.id, role: user.role });
 
         return done(null, { user, token });
       } catch (error) {

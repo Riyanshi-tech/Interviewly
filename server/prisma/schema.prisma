@@ -12,9 +12,18 @@ model User {
   password  String
   role      Role
   createdAt DateTime @default(now())
+  interviews Interview[]
 }
 
 enum Role {
   INTERVIEWER
   CANDIDATE
+}
+model Interview {
+  id        String   @id @default(uuid())
+  roomId    String   @unique
+  createdBy String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [createdBy], references: [id])
 }

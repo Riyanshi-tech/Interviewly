@@ -25,8 +25,15 @@ const signupUser = async (email, password, role) => {
 };
 exports.signupUser = signupUser;
 const loginUser = async (email, password) => {
-    console.log("DEBUG: loginUser called with email:", email);
-    const user = await prisma_1.prisma.user.findFirst({ where: { email: email } });
+    console.log("DEBUG: loginUser attempt with email:", email);
+    if (!email) {
+        throw new Error("Email is required for login");
+    }
+    const user = await prisma_1.prisma.user.findFirst({
+        where: {
+            email
+        }
+    });
     if (!user) {
         throw new Error("Invalid credentials");
     }

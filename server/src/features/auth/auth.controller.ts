@@ -26,9 +26,9 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-export const me = async (req: AuthRequest, res: Response) => {
+export const me = async (req: Request, res: Response) => {
   try {
-    const userId = req.user?.userId;
+    const userId = (req as any).user?.userId;
 
     if (!userId) {
       return res.status(401).json({ error: "Unauthorized" });
