@@ -9,6 +9,8 @@ import { authMiddleware, authorizeRoles } from "./middlewares/auth.middleware";
 import passport from "./lib/passport";
 import session from "express-session";
 import interviewRoutes from "./features/interview/interview.routes";
+import codeRoutes from "./features/code/code.routes";
+
 
 const app = express();
 const server = http.createServer(app);
@@ -50,6 +52,7 @@ app.get(
     res.send("Only interviewer can access");
   }
 );
+app.use("/api/code", codeRoutes);
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
