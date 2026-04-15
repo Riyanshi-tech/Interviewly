@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import Room from "./pages/Room";
-const socket = io("http://localhost:5000");
+const socket = io("https://interviewly-xtv9.onrender.com");
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
