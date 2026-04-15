@@ -46,7 +46,16 @@ export default function Room() {
       <h1>Live Coding Room </h1>
 
       <CodeEditor code={code} setCode={handleCodeChange} />
-      <button onClick={runCode}>Run Code</button>
+      <div style={{ marginTop: "20px" }}>
+        <button onClick={runCode}>Run Code</button>
+      </div>
+
+      {output && (
+        <div style={{ marginTop: "20px", padding: "10px", backgroundColor: "#1e1e1e", color: "#d4d4d4", borderRadius: "5px" }}>
+          <h3>Output:</h3>
+          <pre>{output}</pre>
+        </div>
+      )}
     </div>
   );
-}
+}
