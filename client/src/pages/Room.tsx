@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import CodeEditor from "../components/editor";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://interviewly-xtv9.onrender.com");
 
 export default function Room() {
   const [code, setCode] = useState("");
