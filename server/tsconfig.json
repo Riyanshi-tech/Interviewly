@@ -5,7 +5,7 @@
     "lib": ["ES2020", "DOM"],
     "skipLibCheck": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "moduleResolution": "node",
     "removeComments": true,
     "noImplicitAny": true,

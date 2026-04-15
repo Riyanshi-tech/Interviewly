@@ -48,15 +48,15 @@ function App() {
 
   return (
     <div style={{ 
-      padding: "40px 20px", 
-      maxWidth: "800px", 
-      margin: "0 auto",
+      padding: "20px", 
+      width: "100%",
       display: "flex",
       flexDirection: "column",
-      gap: "24px"
+      gap: "24px",
+      boxSizing: "border-box"
     }}>
       <div>
-        <h1 style={{ marginBottom: "8px" }}>Interviewly Socket Status</h1>
+        <h1 style={{ marginBottom: "8px", textAlign: "center" }}>Interviewly Socket Status</h1>
         <div style={{ 
           display: "flex", 
           alignItems: "center", 
